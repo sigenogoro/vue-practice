@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>My Vue App</title>
+    <title>Vue2 App</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/vue@next"></script>
+    <!-- Vue2 を使う場合は、バージョン指定を行う -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 <body>
-    
+    <h1>Vue.js</h1>
+    <div id="app">
+        {{ message }}
+    </div>
+    <hr>
+    <button onclick="doAction();">click</button>
+    <script>
+         var data = {
+             message: "最初に出力されるメッセージ",
+             items: [
+                 "One",
+                 "Two",
+                 "Three",
+                 "Four",
+                 "Five"
+             ]
+         };
+
+        var app = new Vue({
+                el: "#app",
+                data: data,
+                render: function(elemnt){
+                    return elemnt(
+                        "div",
+                        [
+                            elemnt("h2", {style: "font-size:20pt;"}, data.message),
+                            elemnt("ul", data.items.map(item => elemnt("li", item)))
+                        ]
+                    );
+                }
+        });
+
+        function doAction(){
+            var newdata = [
+                "いち", "に", "さん","よん","ご"
+            ]
+            data.message = "クリックしました"
+            for(n in data.items){
+                console.log(n);
+                data.items[n] = newdata[n];
+            }
+        }
+    </script>
 </body>
 </html>
