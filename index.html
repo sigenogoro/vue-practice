@@ -8,47 +8,43 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 <body>
+    <style>
+        .red {
+            font-size: 20pt;
+            color: red;
+        }
+        .blue {
+            font-size: 20pt;
+            color: blue;
+        }
+    </style>
     <h1>Vue.js</h1>
     <div id="app">
-        {{ message }}
+        <!-- <p v-html="messages"></p> -->
+        <!-- <ol v-html="messages"></ol> -->
+        <p v-bind:class="classes">{{ message }}</p>
     </div>
     <hr>
     <button onclick="doAction();">click</button>
     <script>
-         var data = {
-             message: "最初に出力されるメッセージ",
-             items: [
-                 "One",
-                 "Two",
-                 "Three",
-                 "Four",
-                 "Five"
-             ]
-         };
+        var classObj = {
+            red: true,
+            blue: false
+        };
 
-        var app = new Vue({
-                el: "#app",
-                data: data,
-                render: function(elemnt){
-                    return elemnt(
-                        "div",
-                        [
-                            elemnt("h2", {style: "font-size:20pt;"}, data.message),
-                            elemnt("ul", data.items.map(item => elemnt("li", item)))
-                        ]
-                    );
-                }
+        var data = {
+            message: "first commit",
+            classes: classObj
+        };
+
+        var data = new Vue({
+            el: "#app",
+            data: data
         });
 
         function doAction(){
-            var newdata = [
-                "いち", "に", "さん","よん","ご"
-            ]
-            data.message = "クリックしました"
-            for(n in data.items){
-                console.log(n);
-                data.items[n] = newdata[n];
-            }
+            classObj.red = !classObj.red
+            classObj.blue = !classObj.blue
         }
     </script>
 </body>
