@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue2 App</title>
+    <!-- Vue2 を使う場合は、バージョン指定を行う -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <style>
+        .ok {
+            font-size: 24pt;
+            color: blue;
+            padding: 5px 10px;
+            border: 2px solid red;
+        }
+        .ng {
+            font-size: 20pt;
+            color: gray;
+        }
+    </style>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <p v-if="displayOnOff" class="ok">これは正常な表示です。</p>
+        <p v-else class="ng">現在開発中です・・・・・</p>
+    </div>
+
+    <button onclick="doAction();">Click</button>
+
+    <script>
+        var data = {
+            displayOnOff: true
+        }
+
+        var app = new Vue({
+            el: "#app",
+            data: data
+        });
+
+        function doAction(){
+            data.displayOnOff = !data.displayOnOff
+        }
+    </script>
+</body>
+</html>
