@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue2 App</title>
+    <!-- Vue2 を使う場合は、バージョン指定を行う -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <style>
+        .hello {
+            font-size: 20pt;
+            font-weight: bold;
+            border: 1px solid magenta;
+            padding: 5px 10px 0px 10px;
+            margin: 10px;
+        }
+    </style>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <hello/>
+    </div>
+<script>
+    var hello = Vue.component("hello",
+    {
+        data: function(){
+            return {
+                counter: 0
+            };
+        },
+        template: '<p v-on:click="counter++;" class="hello">clicked: {{ counter }}.</p>',
+    })
+
+    var app = new Vue({
+        el: "#app"
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue2 App</title>
+    <!-- Vue2 を使う場合は、バージョン指定を行う -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <style>
+        table tr th {
+            font-size: 16pt;
+            color: white;
+            background-color: blue;
+            padding: 5px 15px;
+        }
+        table tr td {
+            font-size: 16pt;
+            color: gray;
+            border: 1px solid gray;
+        }
+    </style>
+    <h1>Vue.js</h1>
+    <div id = "app">
+        <p>データをテーブルで表示する</p>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>mail</th>
+                <th>tel</th>
+            </tr>
+            <tr v-for="(item, id) in items" v-if="id % 2 == 0">
+                <td>{{ id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.mail }}</td>
+                <td>{{ item.tel }}</td>
+            </tr>
+            <tr v-else>
+                <td> *** </td>
+                <td> 公開できないよ！！</td>
+                <td> 公開できないよ！！</td>
+                <td> 公開できないよ！！</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var data = {
+            items: [
+                {name: "Taro", mail: "taro@mail", tel: "0000"},
+                {name: "jin", mail: "jin@mail", tel: "0555"},
+                {name: "momo", mail: "momo@mail", tel: "9999"}
+            ]
+        }
+
+        var app = new Vue({
+            el: "#app",
+            data: data
+        })
+    </script>
+</body>
+</html>
