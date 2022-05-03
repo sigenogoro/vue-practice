@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue2 App</title>
+    <!-- Vue2 を使う場合は、バージョン指定を行う -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <style>
+        .red {
+            color: white;
+            background-color: red;
+        }
+    </style>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <hello/>
+    </div>
+
+    <script>
+        Vue.component("hello",
+            {
+                data:function() {
+                    return {
+                        num: 0,
+                        message: "type a number",
+                    };
+                },
+                methods: {
+                    calc:function(event) {
+                        var total = 0;
+                        for(var i = 1; i <= this.num; i++){
+                            total += i;
+                        }
+                        this.message = "total: " + total;
+                    }
+                },
+                template: '<div><p class="hello">{{ message }}</p><div><input type="number" v-on:input="calc" v-model="num"></div></div>',
+            }
+        );
+
+        var app = new Vue({
+            el: "#app"
+        });
+    </script>
+</body>
+</html>
