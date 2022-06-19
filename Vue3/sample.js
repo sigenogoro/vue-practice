@@ -1,30 +1,12 @@
-const watchExampleVM = {
+const app = Vue.createApp({})
+
+app.component("button-co",{
     data(){
         return {
-            question4: "",
-            answer: "Questions usually contain a question mark. ;-)"
+            count: 0
         }
     },
-    watch: {
-        question4(newQuestion, oldQuestion){
-            if(newQuestion.indexOf("?") > -1){
-                this.getAnswer()
-            }
-        }
-    },
-    methods: {
-        getAnswer(){
-            this.answer = "Thinking...."
-            axios.get("https://yesno.wtf/api").then(response => {
-                this.answer = response.data.answer
-            })
-            .catch(error => {
-                this.answer = "Error! Could not reach the API." + error
-            })
-        }
-    }
-}
+    template:`<button v-on:click="count++">You clicked me {{ count }} time. </button>`
+})
 
-const app = Vue.createApp(watchExampleVM)
-
-app.mount("#watch-example")
+app.mount("#components-demo")
