@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="todo.css">
     <title>Todoサンプルアプリ</title>
 </head>
 <body>
-    
+    <div id="app">
+        <div v-for="todo in todos">
+            <label>
+                <input type="checkbox" v-model="todo.done">
+                <span :class="{ donestyle:todo.done }">{{ todo.text }}</span>
+            </label>
+        </div>
+
+        <input type="text" v-model.trim="addtext" v-on:keyup.enter="addToDo" placeholder="すること">
+        <p><button v-on:click="cleanToDo">処理済みを削除</button></p>
+        <p>{{ remaining }} / {{ todos.length }}件処理</p>
+    </div>
 
 
 
-    <script type="text/javascript" src="sample.js"></script>
+    <script type="text/javascript" src="todo.js"></script>
 </body>
 </html>
